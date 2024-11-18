@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="tu-codigo-de-verificacion" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Redirección automática a nuestro sitio web. Si no es redirigido automáticamente, haga clic en el enlace.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Redirigiendo...</title>
+
+    <script type="text/javascript">
+        // Verificación si JavaScript está habilitado para realizar la redirección correctamente
+        if (typeof window.location.href !== "undefined") {
+            const redirectUrl = "https://www.distribuidora-ram.com/?fbclid=IwY2xjawGiEjtleHRuA2FlbQIxMAABHdtaShEFZrikdDBSTiY0Mbc16V3HqiwxrsxX5OSzmch9pgrLc8IpKGC8pw_aem_Ozs2fpcXCetwOK897tJ1_Q";
+            try {
+                new URL(redirectUrl);
+                window.location.href = redirectUrl;
+            } catch (e) {
+                console.error("Error en la URL de redirección:", e);
+                alert("Hubo un problema con la redirección. Intenta hacer clic en el siguiente enlace.");
+            }
+        }
+    </script>
+
+    <noscript>
+        <p>Si no eres redirigido automáticamente, por favor <a href="https://www.distribuidora-ram.com/?fbclid=IwY2xjawGiEjtleHRuA2FlbQIxMAABHdtaShEFZrikdDBSTiY0Mbc16V3HqiwxrsxX5OSzmch9pgrLc8IpKGC8pw_aem_Ozs2fpcXCetwOK897tJ1_Q" target="_blank">haz clic aquí para continuar</a>.</p>
+    </noscript>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #0078d4;
+        }
+
+        .loading-message {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        a {
+            color: #0078d4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            color: #555;
+            margin-top: 20px;
+        }
+
+        .renew-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .renew-btn:hover {
+            background-color: #005b99;
+        }
+
+        .unlock-section {
+            margin-top: 20px;
+        }
+
+        .input-code {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        .unlock-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .unlock-btn:hover {
+            background-color: #218838;
+        }
+
+        .error-message {
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Redirigiendo...</h1>
+
+        <div class="loading-message">
+            Si no eres redirigido automáticamente, por favor <a href="https://www.distribuidora-ram.com/?fbclid=IwY2xjawGiEjtleHRuA2FlbQIxMAABHdtaShEFZrikdDBSTiY0Mbc16V3HqiwxrsxX5OSzmch9pgrLc8IpKGC8pw_aem_Ozs2fpcXCetwOK897tJ1_Q" target="_blank">haz clic aquí para continuar</a>.
+        </div>
+
+        <div class="timer" id="timer"></div>
+
+        <button class="renew-btn" onclick="renovarTemporizador()">Renovar Temporizador</button>
+
+        <div class="unlock-section" id="unlock-section" style="display:none;">
+            <label for="code">Ingresa el alias de pago para desbloquear:</label>
+            <input type="text" id="code" class="input-code" placeholder="Alias de pago">
+            <button class="unlock-btn" onclick="desbloquearTemporizador()">Desbloquear</button>
+            <div class="error-message" id="error-message"></div>
+        </div>
+    </div>
+
+    <script>
+        const aliasPagoCorrecto = 'Nmlaranda1105'; // Alias de pago
+        const telefonoWhatsApp = '5491131097561'; // Número de WhatsApp de contacto
+        const numeroUsuario = '+54 9 11 3109-7561'; // Número del usuario
+
+        // Función para actualizar el temporizador
+        function actualizarTemporizador() {
+            const fechaInicio = localStorage.getItem('fechaInicio') ? new Date(localStorage.getItem('fechaInicio')) : new Date();
+            const ahora = new Date();
+            const diferencia = ahora - fechaInicio; // Diferencia en milisegundos
+            const diasRestantes = Math.ceil((365 * 24 * 60 * 60 * 1000 - diferencia) / (24 * 60 * 60 * 1000)); // 365 días en milisegundos
+
+            if (diasRestantes > 0) {
+                document.getElementById('timer').textContent = `El temporizador se renovará en ${diasRestantes} días.`;
+                document.getElementById('unlock-section').style.display = 'none'; // Ocultar el campo de desbloqueo
+            } else {
+                document.getElementById('timer').textContent = `¡Es hora de renovar el temporizador!`;
+                document.getElementById('unlock-section').style.display = 'block'; // Mostrar el campo de desbloqueo
+                // Enviar notificación de vencimiento
+                enviarNotificacionWhatsApp(`¡Tu servicio ha vencido, ${numeroUsuario}! Renueva ahora para continuar disfrutando del servicio.`);
+            }
+
+            // Aviso previo de vencimiento (5 días antes)
+            if (diasRestantes === 5) {
+                enviarNotificacionWhatsApp(`¡Recuerda, ${numeroUsuario}! Tu servicio se vencerá en 5 días. Renueva para seguir disfrutando del servicio.`);
+            }
+        }
+
+        // Función para renovar el temporizador manualmente
+        function renovarTemporizador() {
+            const fechaActual = new Date();
+            localStorage.setItem('fechaInicio', fechaActual); // Guardamos la fecha de renovación
+            actualizarTemporizador(); // Actualizamos el temporizador
+            // Enviar notificación de renovación
+            enviarNotificacionWhatsApp(`¡Tu servicio se ha renovado exitosamente por 365 días más, ${numeroUsuario}!`);
+        }
+
+        // Función para desbloquear el temporizador con el alias de pago
+        function desbloquearTemporizador() {
+            const inputCodigo = document.getElementById('code').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // Verificar si el alias de pago ingresado es correcto
+            if (inputCodigo === aliasPagoCorrecto) {
+                // Si el alias de pago es correcto, reiniciamos el temporizador
+                localStorage.setItem('fechaInicio', new Date()); // Establecer la fecha actual como inicio
+                errorMessage.textContent = ''; // Limpiar mensaje de error
+                actualizarTemporizador(); // Actualizar el temporizador
+                // Enviar notificación de renovación
+                enviarNotificacionWhatsApp(`¡Tu servicio se ha renovado exitosamente por 365 días más, ${numeroUsuario}!`);
+            } else {
+                // Si el alias no es válido, bloqueamos el servicio
+                errorMessage.textContent = 'Alias incorrecto. El servicio se ha bloqueado.';
+                // Enviar mensaje de bloqueo
+                enviarNotificacionWhatsApp(`¡El pago no fue reconocido, ${numeroUsuario}! El servicio ha sido bloqueado.`);
+            }
+        }
+
+        // Función para enviar un mensaje de notificación por WhatsApp
+        function enviarNotificacionWhatsApp(mensaje) {
+            const urlWhatsApp = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}&phone=${telefonoWhatsApp}`;
+            window.open(urlWhatsApp, '_blank');
+        }
+
+        // Llamada a la función para mostrar el temporizador al cargar la página
+        actualizarTemporizador();
+
+        // Actualizamos el temporizador cada segundo
+        setInterval(actualizarTemporizador, 1000);
+    </script>
+
+</body>
+</html>
